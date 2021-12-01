@@ -6,7 +6,7 @@ const isOwnMessage = (message, user) => {
     return message.user.id === user.uid ? 'message__self' : ''
 }
 
-const timeFromNow = (timestamp) => moment(timestamp).timeFromNow();
+const timeFromNow = (timestamp) => moment(timestamp).fromNow();
 
 const Message = ({message, user}) => (
     <Comment>

@@ -20,7 +20,7 @@ body,
   z-index: 200;
 }
 
-.messages__self {
-  border-left: 2px solid orange;
+.message__self {
+  border-left: 2px solid rgb(146, 86, 161);
   padding-left: 8px;
 }

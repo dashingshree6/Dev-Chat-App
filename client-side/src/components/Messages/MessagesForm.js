@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Input, Segment } from 'semantic-ui-react';
 import firebase from '../../Firebase';
+import FileModal from './FileModal';
 
 class MessagesForm extends React.Component {
     state = {
@@ -8,9 +9,17 @@ class MessagesForm extends React.Component {
         loading: false,
         channel : this.props.currentChannel,
         user : this.props.currentUser,
-        errors : []
+        errors : [],
+        modal : false
     }
 
+    openModal = () => {
+        this.setState({ modal: true})
+    }
+
+    closeModal = () => {
+        this.setState({ modal: false})
+    }
     handleChange = (event) => {
         this.setState({ [event.target.name] : event.target.value})
     }
@@ -49,8 +58,12 @@ class MessagesForm extends React.Component {
             })
         }
     }
+
+    uploadFile = (file, metadata) => {
+        console.log(file, metadata);
+    }
     render() {
-        const {errors, message, loading} = this.state;
+        const {errors, message, loading, modal} = this.state;
         return (
             <Segment className="message__form">
                 <Input
@@ -76,10 +89,15 @@ class MessagesForm extends React.Component {
                     icon='edit'/>
                     <Button
                     color='teal'
+                    onClick={this.openModal}
                     content='Upload media'
                     labelPosition='right'
                     icon='cloud upload'/>
                 </Button.Group>
+                <FileModal
+                uploadFile={this.uploadFile}
+                modal={modal}
+                closeModal={this.closeModal}/>
             </Segment>
         )
     }
