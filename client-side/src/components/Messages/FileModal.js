@@ -28,12 +28,10 @@ class FileModal extends React.Component {
        }
    }
 
-   clearFile = () => {
-       this.setState({ file: null})
-   }
-   isAuthorized = (fileName) => {
-       this.state.authorized.includes(mime.lookup(fileName))
-   }
+   clearFile = () =>  this.setState({ file: null})
+   
+   isAuthorized = (fileName) => this.state.authorized.includes(mime.lookup(fileName))
+   
    render() {
         const { modal, closeModal } = this.props;
         return (

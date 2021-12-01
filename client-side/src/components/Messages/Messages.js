@@ -3,6 +3,7 @@ import {Segment, Comment} from 'semantic-ui-react';
 import MessagesHeader from './MessagesHeader';
 import MessagesForm from './MessagesForm';
 import firebase from '../../Firebase.js';
+import "firebase/database";
 import Message from './Message';
 
 class Messages extends React.Component {
@@ -36,14 +37,14 @@ class Messages extends React.Component {
     })
   }
 
-  displayMessages = (messages) => (
+  displayMessages = (messages) => 
     messages.length > 0 && messages.map(message => (
       <Message
       key={message.timestamp}
       message={message}
       user={this.state.user}/>
     ))
-  )
+  
   render() {
     const {messagesRef,messages, channel, user} = this.state;
     return (
