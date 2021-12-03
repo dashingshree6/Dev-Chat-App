@@ -3,7 +3,7 @@ import { Button, Input, Segment } from 'semantic-ui-react';
 import firebase from '../../Firebase';
 import "firebase/storage";
 import FileModal from './FileModal';
-import {v4 as uuidv4} from "uuid";
+import {v4 as uuidv4} from "uuid/v4";
 
 class MessagesForm extends React.Component {
     state = {
@@ -88,8 +88,8 @@ class MessagesForm extends React.Component {
                     uploadTask: null
                 })
             }, () => {
-                this.state.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                    this.sendFileMessage(downloadURL, ref, pathToUpload);
+                this.state.uploadTask.snapshot.ref.getDownloadURL().then(downloadUrl => {
+                    this.sendFileMessage(downloadUrl, ref, pathToUpload);
                 }).catch(err => {
                     console.error(err);
                     this.setState({
@@ -102,8 +102,8 @@ class MessagesForm extends React.Component {
         })
     }
 
-    sendFileMessage = (fileURL, ref, pathToUpload) => {
-        ref.child(pathToUpload).push().set(this.createMessage(fileURL)).then(() => {
+    sendFileMessage = (fileUrl, ref, pathToUpload) => {
+        ref.child(pathToUpload).push().set(this.createMessage(fileUrl)).then(() => {
             this.setState({ uploadState: 'done'})
         }).catch(err => {
             this.setState({ errors : this.state.errors.concat(err)})
