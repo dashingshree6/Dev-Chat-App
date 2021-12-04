@@ -4,6 +4,7 @@ import firebase from '../../Firebase';
 import "firebase/storage";
 import FileModal from './FileModal';
 import {v4 as uuidv4} from "uuid";
+import ProgressBar from './ProgressBar';
 
 class MessagesForm extends React.Component {
     state = {
@@ -79,6 +80,7 @@ class MessagesForm extends React.Component {
         }, () => {
             this.state.uploadTask.on('state_changed', snap => {
                 const percentUploaded = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+                this.props.isProgressBarVisible(percentUploaded);
                 this.setState({ percentUploaded})
             }, err => {
                 console.error(err);
@@ -110,7 +112,7 @@ class MessagesForm extends React.Component {
         })
     }
     render() {
-        const {errors, message, loading, modal, uploadState} = this.state;
+        const {errors, message, loading, modal, uploadState, percentUploaded} = this.state;
         return (
             <Segment className="message__form">
                 <Input
@@ -146,6 +148,9 @@ class MessagesForm extends React.Component {
                 uploadFile={this.uploadFile}
                 modal={modal}
                 closeModal={this.closeModal}/>
+                <ProgressBar 
+                uploadState={uploadState}
+                percentUploaded={percentUploaded}/>
             </Segment>
         )
     }

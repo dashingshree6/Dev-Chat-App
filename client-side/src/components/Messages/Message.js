@@ -18,7 +18,7 @@ const Message = ({message, user}) => (
             <Comment.Author as='a'>{message.user.name}</Comment.Author>
             <Comment.Metadata>{timeFromNow(message.timestamp)}</Comment.Metadata>
             {isImage(message) ? 
-            (<Image src={message.image} className="message__image" size='small'/>) 
+            (<Image src={message.image} className="message__image" size='large'/>) 
             : 
             (<Comment.Text>{message.content}</Comment.Text>)
             }
