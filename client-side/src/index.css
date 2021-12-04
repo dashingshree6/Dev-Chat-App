@@ -7,8 +7,8 @@ body,
 }
 
 .messages {
-  height: 440px;
-  overflow : scroll;
+  height: 62vh;
+  overflow-y : scroll;
 }
 
 .message__form {

@@ -3,7 +3,7 @@ import { Button, Input, Segment } from 'semantic-ui-react';
 import firebase from '../../Firebase';
 import "firebase/storage";
 import FileModal from './FileModal';
-import {v4 as uuidv4} from "uuid/v4";
+import {v4 as uuidv4} from "uuid";
 
 class MessagesForm extends React.Component {
     state = {
@@ -44,8 +44,8 @@ class MessagesForm extends React.Component {
         } else {
             message['content'] = this.state.message
         }
+        return message;
     }
-
     sendMessage = () => {
         const {messagesRef} = this.props;
         const {message, channel} = this.state;
