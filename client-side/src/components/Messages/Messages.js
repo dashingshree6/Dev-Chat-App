@@ -5,6 +5,8 @@ import MessagesForm from './MessagesForm';
 import firebase from '../../Firebase.js';
 import "firebase/database";
 import Message from './Message';
+import {connect} from 'react-redux';
+import {setUserPosts} from '../../actions';
 
 class Messages extends React.Component {
   state = {
@@ -194,4 +196,4 @@ class Messages extends React.Component {
   }
 }
 
-export default Messages;
+export default connect(null, {setUserPosts})(Messages);
